@@ -1,0 +1,28 @@
+const countrydb = [
+ { value: "USA", label: "USA" },
+  { value: "Canada", label: "Canada" },
+  { value: "Mexico", label: "Mexico" },
+  { value: "Brazil", label: "Brazil" },
+  { value: "Argentina", label: "Argentina" },
+  { value: "UK", label: "United Kingdom" },
+  { value: "France", label: "France" },
+  { value: "Germany", label: "Germany" },
+  { value: "Spain", label: "Spain" },
+  { value: "Italy", label: "Italy" },
+  { value: "Greece", label: "Greece" },
+  { value: "Turkey", label: "Turkey" },
+  { value: "UAE", label: "UAE" },
+  { value: "Singapore", label: "Singapore" },
+  { value: "Thailand", label: "Thailand" },
+  { value: "Vietnam", label: "Vietnam" },
+  { value: "Japan", label: "Japan" },
+  { value: "China", label: "China" },
+  { value: "South Korea", label: "South Korea" },
+  { value: "Australia", label: "Australia" },
+  { value: "New Zealand", label: "New Zealand" },
+  { value: "Egypt", label: "Egypt" },
+  { value: "Morocco", label: "Morocco" },
+  { value: "India", label: "India" },
+];
+
+export default countrydb
