@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from "@tailwindcss/vite";
 import viteImagemin from 'vite-plugin-imagemin';
 
+// Если выше не сработает, попробуй так:
+// import { default as viteImagemin } from 'vite-plugin-imagemin';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
