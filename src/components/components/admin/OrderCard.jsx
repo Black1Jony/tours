@@ -1,5 +1,3 @@
-// frontend/src/components/OrderCard.jsx
-import React from "react";
 import { Card, Button, Tag, Popconfirm } from "antd";
 import { motion } from "framer-motion";
 
