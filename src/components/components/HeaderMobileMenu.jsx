@@ -1,5 +1,4 @@
-import { Button } from "antd/es/button";
-import { Menu } from "antd/es/menu";
+import { Button, Menu } from "antd";
 export default function HeaderMobileMenu({
   menuItems,
   onNavigate,
