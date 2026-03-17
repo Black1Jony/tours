@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from "@tailwindcss/vite";
-import viteImagemin from 'vite-plugin-imagemin';
+import { default as viteImagemin } from 'vite-plugin-imagemin'
 
 // Если выше не сработает, попробуй так:
 // import { default as viteImagemin } from 'vite-plugin-imagemin';
