@@ -1,11 +1,17 @@
-import React from 'react'
-import { StarIcon, MapPinIcon, CalendarIcon, PaperAirplaneIcon, SparklesIcon } from "@heroicons/react/24/solid"
-import { CheckIcon } from "@heroicons/react/24/outline"
+import StarIcon from "@heroicons/react/24/solid/StarIcon";
+import MapPinIcon from "@heroicons/react/24/solid/MapPinIcon";
+import CalendarIcon from "@heroicons/react/24/solid/CalendarIcon";
+import PaperAirplaneIcon from "@heroicons/react/24/solid/PaperAirplaneIcon";
+import SparklesIcon from "@heroicons/react/24/solid/SparklesIcon";
+import CheckIcon from "@heroicons/react/24/outline/CheckIcon";
 import { useNavigate } from 'react-router'
+import { motion } from 'motion/react'
+import { useState } from "react";
+import api from "../../../api/api";
 
-const Card = (props) => {
-    const tour = props.tour
+const Card = ({ tour, itemVariants, isAdminComponent, keyAdmin }) => {
     if (!tour) return 0
+    const [isDeleting, setIsDeleting] = useState(false)
     const navigate = useNavigate()
     const renderStars = (stars) => {
         return (
@@ -22,16 +28,31 @@ const Card = (props) => {
 
     const discountPercent = tour.price?.discount || 0
     const originalPrice = tour.price?.amount ? Math.round(tour.price.amount / (1 - discountPercent / 100)) : tour.price?.amount
-
+    const deleteTour = async(e)=>{
+        e.stopPropagation()
+        try {
+            await api.delete(`/tours/${tour._id}?secretKey=${keyAdmin}`)
+            setIsDeleting(true)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    if(isDeleting){
+        return null
+    }
   return (
-    <div className='w-full bg-white border border-gray-200 rounded-2xl overflow-hidden cursor-pointer hover:shadow-xl transition-shadow duration-300 h-full flex flex-col'
+    
+    <motion.div className='w-full bg-white border border-gray-200 rounded-2xl overflow-hidden cursor-pointer hover:shadow-xl transition-shadow duration-300 h-full flex flex-col'
     onClick={()=> navigate(`/tour/${tour._id}`)}
+    variants={itemVariants}
     >
         <div className='relative overflow-hidden group'>
             <img 
                 src={tour?.media?.cover} 
                 alt={tour.title} 
                 className='w-full h-56 object-cover group-hover:scale-110 transition-transform duration-300'
+                loading="lazy"
+                decoding="async"
             />
             {discountPercent > 0 && (
                 <div className='absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold'>
@@ -42,6 +63,11 @@ const Card = (props) => {
                 <PaperAirplaneIcon className="w-4 h-4" />
                 {tour.flight?.airline}
             </div>
+            {isAdminComponent && (
+                <div className='absolute bottom-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold z-10' onClick={(e)=> deleteTour(e)}>
+                    delete
+                </div>
+            )}
         </div>
 
         <div className='p-4 flex-1 flex flex-col gap-3'>
@@ -127,7 +153,7 @@ const Card = (props) => {
                 </div>
             </div>
         </div>
-    </div>
+    </motion.div>
   )
 }
 

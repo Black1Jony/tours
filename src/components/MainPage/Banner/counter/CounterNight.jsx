@@ -8,10 +8,10 @@ const CounterNight = () => {
     const [hidden, setHidden] = useState(true)
     const [render, setRender] = useState(false);
     const modalRef = useRef(null)
-    const {night, setNight} = useFindStore()
+    const { nights, setNight } = useFindStore()
     useEffect(() => {
-        setDates({ days: night })
-    }, [])
+        setDates({ days: Array.isArray(nights) ? nights : [4, 7] })
+    }, [nights])
     useEffect(() => {
 
         const daysArray = Array.from({ length: 30 }, (_, i) => i + 1); // 0..28 => 1..29
@@ -71,7 +71,7 @@ const CounterNight = () => {
                         <div
                             key={i}
                             className={`cursor-pointer hover:bg-[#98b5d1] transition rounded text-white text-center py-2
-${date.days.includes(i)
+${(date.days ?? []).includes(i)
                                     ? "bg-[#4d81b3]"
                                     : i > date.days[0] && i < date.days[1]
                                         ? "bg-[#8da8c2]"

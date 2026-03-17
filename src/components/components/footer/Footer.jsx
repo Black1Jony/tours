@@ -1,11 +1,6 @@
-import React from 'react'
-import {
-  FaPhone,
-  FaEnvelope,
-  FaFacebook,
-  FaTwitter,
-  FaInstagram,
-} from 'react-icons/fa'
+import EnvelopeIcon from "@heroicons/react/24/outline/EnvelopeIcon";
+import PhoneIcon from "@heroicons/react/24/outline/PhoneIcon";
+import GlobeAltIcon from "@heroicons/react/24/solid/GlobeAltIcon";
 
 const Footer = () => {
   return (
@@ -66,20 +61,20 @@ const Footer = () => {
         <div>
           <h4 className="text-lg font-semibold mb-4">Contact</h4>
           <p className="flex items-center">
-            <FaPhone className="mr-2 text-xl" /> +1 1234 5678
+            <PhoneIcon className="mr-2 w-5 h-5" /> +1 1234 5678
           </p>
           <p className="flex items-center mt-2">
-            <FaEnvelope className="mr-2 text-xl" /> support@example.com
+            <EnvelopeIcon className="mr-2 w-5 h-5" /> support@example.com
           </p>
           <div className="flex space-x-4 mt-4">
             <span className="hover:text-gray-400 cursor-default">
-              <FaFacebook size={20} />
+              <GlobeAltIcon className="w-5 h-5" />
             </span>
             <span className="hover:text-gray-400 cursor-default">
-              <FaTwitter size={20} />
+              <GlobeAltIcon className="w-5 h-5" />
             </span>
             <span className="hover:text-gray-400 cursor-default">
-              <FaInstagram size={20} />
+              <GlobeAltIcon className="w-5 h-5" />
             </span>
           </div>
         </div>

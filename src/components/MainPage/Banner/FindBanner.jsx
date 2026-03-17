@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router';
 const FindBanner = () => {
   const { RangePicker } = DatePicker
   const navigate = useNavigate()
-  const { night, dateFrom, dateTo, guests, country, setDateFrom, setDateTo, setCountry } = useFindStore()
+  const { nights,  guests, country, setDateFrom, setDateTo, setCountry } = useFindStore()
   const [messageApi, contextHolder] = message.useMessage();
   const showMessage = () => {
     const showMessageValidation = (type, text) => {
@@ -27,10 +27,10 @@ const FindBanner = () => {
         }
       )
     }
-    if (!night?.[0] ||
-      !night?.[1] ||
-      !dateFrom ||
-      !dateTo ||
+    if (!nights?.[0] ||
+      !nights?.[1] ||
+      
+      !country ||
       !guests) {
       showMessageValidation('warning', 'Please fill in all fields')
     } else {
@@ -48,29 +48,9 @@ const FindBanner = () => {
           <h2 className='text-3xl font-medium text-[#000000] opacity-80'>view world with mirage</h2>
         </div>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 min-w-full border border-[#D9D9D9] rounded-4xl mt-6 p-6 shadow-sm hover:shadow-md transition-shadow duration-300'>
+        <div className='grid grid-cols-1 md:grid-cols-1 xl:grid-cols-3 gap-6 min-w-full border border-[#D9D9D9] rounded-4xl mt-6 p-6 shadow-sm hover:shadow-md transition-shadow duration-300'>
           {/* Date Picker */}
-          <div className='flex gap-3 items-center w-full p-2 rounded-xl hover:bg-blue-50 transition-colors duration-300 '>
-            <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-blue-100 rounded-full">
-              <CalendarIcon className="w-6 h-6 text-[#008EC4]" />
-            </div>
-            <div className='flex flex-col gap-1 w-full'>
-              <p className='text-sm font-medium text-gray-700'>Date</p>
-              <RangePicker
-                placeholder={["from", "to"]}
-                className='w-full rounded-xl border-gray-300 hover:border-blue-300'
-                locale={ru_RU}
-                format="DD.MM"
-                value={dateFrom && dateTo ? [dayjs(dateFrom, 'DD.MM'), dayjs(dateTo, 'DD.MM')] : null}
-                onChange={(dates, datesString) => {
-                  if (!dates) return
-
-                  setDateFrom(datesString[0])
-                  setDateTo(datesString[1])
-                }}
-              />
-            </div>
-          </div>
+          
 
           {/* Country Picker */}
           <div className='flex gap-3 items-center w-full p-2 rounded-xl hover:bg-blue-50 transition-colors duration-300'>

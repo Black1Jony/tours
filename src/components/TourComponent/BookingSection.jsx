@@ -6,6 +6,7 @@ const BookingSection = ({ data }) => {
 
     const basePrice = data?.price?.amount || 0
     const discount = data?.price?.discount || 0
+    const idTour = data?._id
     const discountedPrice = Math.round(basePrice * (1 - discount / 100))
     const totalPrice = discountedPrice * selectedGuests
 
@@ -133,7 +134,7 @@ const BookingSection = ({ data }) => {
                         </div>
                     </div>
 
-                    <Book isTourComponent={true} />
+                    <Book  idTour={idTour} guests={selectedGuests} price={totalPrice}/>
                 </div>
             </div>
         </div>

@@ -4,14 +4,18 @@ const useFindStore = create((set) => ({
     dateFrom: '',
     dateTo: '',
     country: null,   
-    night: [4, 7],
+    nights: [4, 7],
     guests: 2,
+    priceMin: 100,
+    priceMax: 1000000,
+    stars: 4,
+    extras: [],
 
     setDateFrom: (date) => set({ dateFrom: date }),
     setDateTo: (date) => set({ dateTo: date }),
     setCountry: (country) => set({ country }), 
 
-    setNight: (night) => set({ night }), 
+    setNight: (nights) => set({ nights }), 
 
     incrementGuests: () => set((state) => {
         if (state.guests < 6) {
@@ -26,6 +30,10 @@ const useFindStore = create((set) => ({
         }
         return state
     }),
+    setPriceMin: (priceMin) => set({ priceMin }),
+    setPriceMax: (priceMax) => set({ priceMax }),
+    setStars: (stars) => set({ stars }),
+    setExtras: (extras) => set({ extras }),
 }))
 
 export default useFindStore

@@ -93,7 +93,6 @@
   background-color: #3b82f6 !important;
 }
 
-/* Disable default pagination line */
 .swiper-pagination-horizontal {
   bottom: auto !important;
 }

@@ -1,25 +1,36 @@
 import { FaWifi, FaSwimmingPool, FaSpa, FaUtensils, FaPlane, FaHotel, FaShieldAlt, FaMapMarkerAlt } from "react-icons/fa"
 import { IoCheckmark } from "react-icons/io5"
 import { useRef, useEffect } from "react";
-import maplibregl from 'maplibre-gl';
-import 'maplibre-gl/dist/maplibre-gl.css';
+
 const TourInfo = ({ data }) => {
 const mapContainer = useRef(null);
     useEffect(() => {
-    if (!mapContainer.current) return;
-    const coordinate = data?.geo?.coordinates
-    const map = new maplibregl.Map({
-      container: mapContainer.current,
-      style: 'https://tiles.openfreemap.org/styles/bright', 
-      center: [coordinate[0], coordinate[1]], 
-      zoom: 12,
-    });
+    let mapInstance;
+    const loadMap = async () => {
+      if (!mapContainer.current || !data?.geo?.coordinates) return;
+      const coordinate = data.geo.coordinates;
+      const { default: maplibregl } = await import("maplibre-gl");
+      await import("maplibre-gl/dist/maplibre-gl.css");
 
-    new maplibregl.Marker({ color: '#FF0000' })
-      .setLngLat([coordinate[0], coordinate[1]])
-      .addTo(map);
+      mapInstance = new maplibregl.Map({
+        container: mapContainer.current,
+        style: "https://tiles.openfreemap.org/styles/bright",
+        center: [coordinate[0], coordinate[1]],
+        zoom: 12,
+      });
 
-    return () => map.remove();
+      new maplibregl.Marker({ color: "#FF0000" })
+        .setLngLat([coordinate[0], coordinate[1]])
+        .addTo(mapInstance);
+    };
+
+    loadMap();
+
+    return () => {
+      if (mapInstance) {
+        mapInstance.remove();
+      }
+    };
   }, []);
 
     const extras = [
