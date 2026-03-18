@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL:"http://localhost:3000",
-    withCredentials:false
-})
+    baseURL: "https://gallant-insight-production.up.railway.app", 
+    withCredentials: false
+});
 
-export default api
+export default api;
