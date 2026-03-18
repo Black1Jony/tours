@@ -1,39 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from "@tailwindcss/vite";
-import _viteImagemin from 'vite-plugin-imagemin';
 
-// Проверяем, является ли импорт функцией, если нет — берем .default
-const viteImagemin = _viteImagemin.default || _viteImagemin;
 export default defineConfig({
   plugins: [
     tailwindcss(),
     react(),
-    viteImagemin({
-      gifsicle: {
-        optimizationLevel: 3,
-        interlaced: false,
-      },
-      optipng: {
-        optimizationLevel: 5,
-      },
-      mozjpeg: {
-        quality: 75,
-      },
-      pngquant: {
-        quality: [0.6, 0.8],
-        speed: 3,
-      },
-      svgo: {
-        plugins: [
-          { name: 'removeViewBox', active: false },
-          { name: 'removeEmptyAttrs', active: false },
-        ],
-      },
-      webp: {
-        quality: 75,
-      },
-    }),
   ],
   build: {
     rollupOptions: {
